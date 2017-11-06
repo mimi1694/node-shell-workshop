@@ -3,12 +3,22 @@ var commands = require('./commands.js');
 process.stdout.write('prompt > ');
 
 process.stdin.on('data', function (data) {
-  var cmd = data.toString().trim();
-  commands['pwd'](cmd);
-  commands.date(cmd);
-  commands['ls'](cmd);
-  //  process.stdout.write(`Can't find command: ${cmd}`);
+  var cmdArray = data.toString().trim().split(' ');
+  var command = cmdArray[0];
+  var args = cmdArray.slice(1).join(' ');
 
+  if (command === 'pwd'){
+    commands.pwd();
+  }
+  if (command === 'date'){
+    commands.date();
+  }
+  if (command === 'ls'){
+    commands['ls']();
+  }
+  if(command==='echo'){
+    commands['echo'](args);
+  }
   process.stdout.write('\nprompt > ');
 });
 
