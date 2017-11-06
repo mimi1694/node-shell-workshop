@@ -43,3 +43,45 @@ exports.head = function(file){
   });
 };
 
+exports.tail = function(file){
+    fs.readFile('./'+file, function(err, data){
+        var arrayOfFile = data.toString().trim().split('\n');
+        if (err) throw err;
+        process.stdout.write(arrayOfFile.slice(arrayOfFile.length-5).join('\n'));
+      //   process.stdout.write(data);
+    });
+}
+
+exports.sort = function(file){
+    fs.readFile('./'+file, function(err, data){
+        var arrayOfFile = data.toString().trim().split('\n');
+        if (err) throw err;
+        arrayOfFile.sort();
+        process.stdout.write(arrayOfFile.slice().join('\n'));
+      //   process.stdout.write(data);
+    });
+}
+
+exports.wc = function(file){
+    fs.readFile('./'+file, function(err, data){
+        var arrayOfFile = data.toString().trim().split('\n');
+        if (err) throw err;
+        process.stdout.write(arrayOfFile.length.toString());
+      //   process.stdout.write(data);
+    });
+}
+
+exports.uniq = function(file){
+    fs.readFile('./'+file, function(err, data){
+        var arrayOfFile = data.toString().trim().split('\n');
+        var result = [];
+        if (err) throw err;
+        for(var i = 0; i<arrayOfFile.length; i++){
+            if(arrayOfFile[i-1] && arrayOfFile[i]!==arrayOfFile[i-1]){
+                result.push(arrayOfFile[i]);
+            }
+        }
+        process.stdout.write(result.join('\n'));
+      //   process.stdout.write(data);
+    });
+}

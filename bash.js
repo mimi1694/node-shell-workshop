@@ -25,6 +25,18 @@ process.stdin.on('data', function (data) {
   if (command === 'head'){
     commands['head'](args);
   }
+  if (command === 'tail'){
+    commands['tail'](args);
+  }
+  if(command === 'sort'){
+    commands['sort'](args);
+  }
+  if(command === 'wc'){
+    commands['wc'](args);
+  }
+  if(command === 'uniq'){
+    commands['uniq'](args);
+  }
   process.stdout.write('\nprompt > ');
 });
 
