@@ -15,5 +15,12 @@ exports.date = function(str){
 };
 
 exports.ls = function(str){
-
+ if (str === 'ls'){
+    fs.readdir('.', function(err, files) {
+        if (err) throw err;
+        files.forEach(function(file) {
+          process.stdout.write(file.toString() + "\n");
+      });
+ });
 }
+};
